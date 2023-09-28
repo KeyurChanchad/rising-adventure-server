@@ -19,8 +19,13 @@ module.exports = {
     email: {
       type: 'String',
       required: true,
+      unique: true,
     },
-    photo: {
+    phoneNumber: {
+      type: 'String',
+      defaultsTo: ''
+    },
+    profilePic: {
       type: 'String',
     },
     otp: {
@@ -31,9 +36,9 @@ module.exports = {
       type: 'String',
       defaultsTo: ''
     },
-    phoneNumber: {
+    token: {
       type: 'String',
-      required: true,
+      defaultsTo: ''
     }
 
 

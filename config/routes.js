@@ -34,6 +34,7 @@ module.exports.routes = {
   ***************************************************************************/
  
   // For UsersController Controller..
-  'POST /api/sentOTP': 'UserController.sendOTP',
+  'POST /api/opt/send': 'UserController.sendOTP',
+  'POST /api/v1/user/create': 'UserController.createUser',
 
 };
