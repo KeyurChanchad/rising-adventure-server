@@ -37,4 +37,9 @@ module.exports.routes = {
   'POST /api/opt/send': 'UserController.sendOTP',
   'POST /api/v1/user/create': 'UserController.createUser',
 
+  //For ShedulesController 
+  'POST /api/v1/getSchedule': 'SchedulesController.getSchedule',
+
+  //For PackagesController
+  'POST /api/v1/getAllPackages': 'PackagesController.getAllPackages',
 };

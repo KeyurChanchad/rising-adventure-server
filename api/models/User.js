@@ -9,35 +9,35 @@ module.exports = {
 
   attributes: {
     firstName: {
-      type: 'String',
+      type: 'string',
       required: true,
     },
     lastName: {
-      type: 'String',
+      type: 'string',
       required: true,
     },
     email: {
-      type: 'String',
+      type: 'string',
       required: true,
       unique: true,
     },
     phoneNumber: {
-      type: 'String',
+      type: 'string',
       defaultsTo: ''
     },
     profilePic: {
-      type: 'String',
+      type: 'string',
     },
     otp: {
-      type: 'String',
+      type: 'string',
       defaultsTo: '',
     },
     role: {
-      type: 'String',
+      type: 'string',
       defaultsTo: ''
     },
     token: {
-      type: 'String',
+      type: 'string',
       defaultsTo: ''
     }
 

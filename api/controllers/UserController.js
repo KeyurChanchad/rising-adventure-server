@@ -4,46 +4,52 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
-
-const accountSid = "AC868fe0328e66b950841853a0c174f546";
-const authToken = "7cdd4704ef8ff889ec251d5c4f63b13e";
-const verifySid = "VAc00377f0a025a282362008f4aadc4bf2";
-const client = require("twilio")(accountSid, authToken);
-var nodemailer = require('nodemailer');
+const wbm = require('wbm');
 
 module.exports = {
     sendOTP: async (req, res) => {
         let response = {};
         console.log("Sending OTP to user.....");
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'keyur@raoinformationtechnology.com',
-                pass: 'ebeecwkoawbyqrdf'
-            }
-        });
-            // ebeecwkoawbyqrdf
-        var mailOptions = {
-            from: 'keyur@raoinformationtechnology.com',
-            to: req.body.email,
-            subject: 'Forget Password for Admin by Rao Chat.',
-            text: `OTP is 35523`,
-            // html: "<b>Hello world?</b>"
-        };
         
-        transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log("Send mail error " ,error);
-        } else {
-            console.log('Email sent: ' + info.response);
+        try {
+            console.log("starting web whatsapp");
+            wbm.start().then(async () => {
+                const contacts = [
+                    { phone: '917202055029', name: 'Keyur', group: 'friend' }, 
+                    { phone: '919974720957', name: 'Manful', group: 'friend' }, 
+                    { phone: '917984254576', name: 'Rao', group: 'customer' },
+                ];
+                for (let contact of contacts) {
+                    let message = 'hi';
+                    if(contact.group === 'customer') {
+                        message = 'Good morning ' + contact.name;
+                    }
+                    else if(contact.group === 'friend') {
+                        message = 'Hey ' + contact.name + '. Wassup?';
+                    }
+                    await wbm.sendTo(contact.phone, message);
+                }
+                await wbm.end();
+                response = {
+                    status: 200,
+                    message:'send successfully.'
+                }
+                return res.status(200).json(response);
+            }).catch(err => console.log(err));
+            
+            return res;
+        } catch (error) {
+            console.log("Error in email js ", error);
+            response.status = 401
+            response.data = error
+            return res.json(response);
         }
-        });
-         response.status = 200
-        return res.status(200).json(response);
+
+       
     },
 
     createUser: async (req, res) => {
+        console.log('creating user')
         let response = {};
         console.log(req.body);
         try {
