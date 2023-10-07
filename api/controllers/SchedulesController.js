@@ -8,10 +8,11 @@
 module.exports = {
   
     getSchedule: async (req, res) => {
+        console.log("pakcage id ", req.body.packageId);
         let response = {};
         try {
             const data = await Schedules.find({ packageId: req.body.packageId });
-            console.log("data is ", data);
+            // console.log("data is ", data);
             response = {
                 status: 200,
                 message: 'Schedule of package get successfully.',

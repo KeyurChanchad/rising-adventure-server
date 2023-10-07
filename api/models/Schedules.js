@@ -20,10 +20,14 @@ module.exports = {
       type: 'number',
       required: true
     },
+    days: {
+      type: 'number',
+      required: true
+    },
     image: {
       type: 'string',
     },
-    maniSchedule: {
+    mainSchedule: {
       type: 'json',
       columnType: 'array' 
     }

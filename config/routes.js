@@ -41,5 +41,5 @@ module.exports.routes = {
   'POST /api/v1/getSchedule': 'SchedulesController.getSchedule',
 
   //For PackagesController
-  'POST /api/v1/getAllPackages': 'PackagesController.getAllPackages',
+  'GET /api/v1/getAllPackages': 'PackagesController.getAllPackages',
 };

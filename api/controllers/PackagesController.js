@@ -7,15 +7,16 @@
 
 module.exports = {
     getAllPackages: async (req, res) => {
+        console.log('getting pacakges from db.')
         let response = {};
         try {
             const data = await Packages.find();
-            console.log("data is ", data);
             response = {
                 status: 200,
                 message: 'Packages get successfully.',
                 data
             }
+            console.log("Pakcages get successfully ");
             return res.status(200).json(response);
 
         } catch (error) {

@@ -54,10 +54,14 @@ module.exports = {
       required: true,
     },
     crouselImages: {
-      type: 'string',
+      type: 'json',
       columnType: 'array',
       required: true,
     },
+    coverImage: {
+      type: 'string',
+      required: true
+    }
   },
 
 };
