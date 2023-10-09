@@ -42,4 +42,8 @@ module.exports.routes = {
 
   //For PackagesController
   'GET /api/v1/getAllPackages': 'PackagesController.getAllPackages',
+
+  // For AttractionController
+  'POST /api/v1/getRelatedPackages': 'AttractionController.getRelatedPackages',
+  
 };
