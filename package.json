@@ -12,12 +12,12 @@
     "connect-mongo": "^5.0.0",
     "grunt": "1.0.4",
     "jwt-decode": "^3.1.2",
+    "nodemailer": "^6.9.6",
     "sails": "^1.5.6",
     "sails-hook-grunt": "^5.0.0",
     "sails-hook-orm": "^4.0.0",
     "sails-hook-sockets": "^2.0.0",
-    "sails-mongo": "^2.0.1",
-    "wbm": "^1.1.16"
+    "sails-mongo": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "5.16.0",
