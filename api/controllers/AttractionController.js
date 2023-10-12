@@ -7,8 +7,23 @@
 
 module.exports = {
     getRelatedPackages: async (req, res)=> {
-        const data = await Attraction.find();
-        return res.json(data);
+        let response = {};
+        try {
+            const packages = await Attraction.find({ pacakgeId: req.body.pacakgeId});
+            response = {
+                status: 200,
+                message: 'Related packages get successfully.',
+                data: packages
+            }
+            return res.status(200).json(response);
+            
+        } catch (error) {
+            response = {
+                status: 401,
+                message: 'Related packages not geted.'
+            }
+            return res.status(200).json(response);
+        }
     }
 };
 
