@@ -15,4 +15,5 @@ const SMTP = {
 
 module.exports.constants = {
     SMTP,
+    ResponseCodes,
 }

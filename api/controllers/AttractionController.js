@@ -4,6 +4,7 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+const Status = sails.config.constants.ResponseCodes;
 
 module.exports = {
     getRelatedPackages: async (req, res)=> {
@@ -11,18 +12,18 @@ module.exports = {
         try {
             const packages = await Attraction.find({ pacakgeId: req.body.pacakgeId});
             response = {
-                status: 200,
+                status: Status.OK,
                 message: 'Related packages get successfully.',
                 data: packages
             }
-            return res.status(200).json(response);
+            return res.status(Status.OK).json(response);
             
         } catch (error) {
             response = {
                 status: 401,
                 message: 'Related packages not geted.'
             }
-            return res.status(200).json(response);
+            return res.status(Status.OK).json(response);
         }
     }
 };

@@ -5,6 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const nodemailer = require("nodemailer");
+const Status = sails.config.constants.ResponseCodes;
 
 function generateOTP(length) {
     const digits = '0123456789';
@@ -94,27 +95,27 @@ module.exports = {
             if (error) {
                 console.log("Send mail error " ,error);
                 response = {
-                    status: 401,
+                    status: BAD_REQUEST,
                     message:'OTP not able to sent.',
                 }
-                return res.status(200).json(response);
+                return res.status(Status.OK).json(response);
             } else {
                 console.log('Email sent: ' + info.response);
                 response = {
-                    status: 200,
+                    status: Status.OK,
                     message:'OTP send successfully.',
                     data: {
                         OTP: generatedOTP
                     }
                 }
-                return res.status(200).json(response);
+                return res.status(Status.OK).json(response);
             }
             });
         } catch (error) {
             console.log("Error in email js ", error);
-            response.status = 401
+            response.status = Status.BAD_REQUEST
             response.data = error
-            return res.json(response);
+            return res.status(Status.BAD_REQUEST).json(response);
         }
 
        
@@ -131,21 +132,21 @@ module.exports = {
             if (!exists) {
                 let user = await User.create(req.body).fetch();
                 console.log("create user ", user);
-                response.status = 200;
+                response.status = Status.CREATED;
                 response.isUserCreate = true;
                 response.data = user;
-                return res.status(200).json(response);
+                return res.status(Status.OK).json(response);
             }
-            response.status = 200;
+            response.status = Status.OK;
             response.message = "Login successfully.";
             response.data = {
                 isLogin: true,
                 isUserCreate: true,
             }
-            return res.status(200).json(response); 
+            return res.status(Status.OK).json(response); 
         } catch (error) {
             response.message = "Something went wrong."
-            return res.status(400).json(response)
+            return res.status(Status.BAD_REQUEST).json(response)
         }
        
     }

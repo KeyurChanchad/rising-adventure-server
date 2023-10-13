@@ -4,6 +4,7 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+const Status = sails.config.constants.ResponseCodes;
 
 module.exports = {
   
@@ -14,19 +15,19 @@ module.exports = {
             const data = await Schedules.find({ packageId: req.body.packageId });
             // console.log("data is ", data);
             response = {
-                status: 200,
+                status: Status.OK,
                 message: 'Schedule of package get successfully.',
                 data
             }
-            return res.status(200).json(response);
+            return res.status(Status.OK).json(response);
 
         } catch (error) {
             console.log("error is ", error);
             response = {
-                status: 404,
+                status: Status.BAD_REQUEST,
                 message: "pacakge id not found",
             }
-            return res.status(200).json(response);
+            return res.status(Status.OK).json(response);
         }
     }
 };
