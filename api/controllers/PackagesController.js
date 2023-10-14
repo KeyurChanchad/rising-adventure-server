@@ -56,6 +56,31 @@ module.exports = {
             }
             return res.status(Status.BAD_REQUEST).json(response);
         }
-    }
+    },
+
+    getJoinUsPlaces: async (req, res) =>{
+        let response = {};
+        try {
+            const package = await Packages.find({ id: req.body.packageId }).limit(1);
+            console.log("package is ", package[0].joinUsFrom);
+            const joinUsPlaces = [];
+            await package[0].joinUsFrom.forEach( async (element) => {
+                joinUsPlaces.push({ lable: `${element.from}`, value: `${element.amount}`})
+            });
+            response = {
+                status: Status.OK,
+                message: "Dates get successfully",
+                data: joinUsPlaces
+            }
+            return res.status(Status.OK).json(response);
+        } catch (error) {
+            console.log("Error getting available dates ", error);
+            response = {
+                status : Status.BAD_REQUEST,
+                message: "No package found."
+            }
+            return res.status(Status.BAD_REQUEST).json(response);
+        }
+    },
 };
 
