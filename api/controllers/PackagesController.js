@@ -39,7 +39,7 @@ module.exports = {
             const dates = [];
             await package[0].availableDates.forEach( async (element) => {
                 await element.dates.forEach(date => {
-                    dates.push({ lable: `${element.month} ${date}, ${element.year}`, value: `${element.month} ${date}, ${element.year}`})
+                    dates.push({ label: `${element.month} ${date}, ${element.year}`, value: `${element.month} ${date}, ${element.year}`})
                 })
             });
             response = {
@@ -65,7 +65,7 @@ module.exports = {
             console.log("package is ", package[0].joinUsFrom);
             const joinUsPlaces = [];
             await package[0].joinUsFrom.forEach( async (element) => {
-                joinUsPlaces.push({ lable: `${element.from}`, value: `${element.amount}`})
+                joinUsPlaces.push({ label: `${element.from}`, value: `${element.amount}`})
             });
             response = {
                 status: Status.OK,
