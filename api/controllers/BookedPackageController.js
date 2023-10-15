@@ -1,5 +1,5 @@
 /**
- * AttractionController
+ * BookedPackageController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -7,21 +7,23 @@
 const Status = sails.config.constants.ResponseCodes;
 
 module.exports = {
-    getRelatedPackages: async (req, res)=> {
+    bookPackage: async (req, res) => {
         let response = {};
+        console.log("booking package ....");
         try {
-            const packages = await Attraction.find({ pacakgeId: req.body.pacakgeId});
+            const package = await BookedPackage.create(req.body).fetch();
             response = {
                 status: Status.OK,
-                message: 'Related packages get successfully.',
-                data: packages
+                message: 'Package booked successfully.',
+                data: package
             }
+            console.log("response of booking ", response);
             return res.status(Status.OK).json(response);
             
         } catch (error) {
             response = {
-                status: BAD_REQUEST,
-                message: 'Related packages not geted.'
+                status: Status.BAD_REQUEST,
+                message: 'Package not booked.'
             }
             return res.status(Status.BAD_REQUEST).json(response);
         }
