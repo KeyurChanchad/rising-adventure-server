@@ -49,6 +49,7 @@ module.exports.routes = {
   'POST /api/v1/getRelatedPackages': 'AttractionController.getRelatedPackages',
 
   //For BookedPackageController
-  'POSt /api/v1/package/book': 'BookedPackageController.bookPackage',
+  'POST /api/v1/package/book': 'BookedPackageController.bookPackage',
+  'GET /api/v1/getBookedPackages/:userId': 'BookedPackageController.getBookedPackages',
   
 };
