@@ -49,6 +49,28 @@ module.exports = {
             }
             return res.status(Status.BAD_REQUEST).json(response);
         }
+    },
+
+    cancelPackage: async (req, res)=> {
+        let response = {};
+        console.log("cancelling booked package ....");
+        try {
+            const packages = await BookedPackage.updateOne({ id: req.body.id }).set({ status: 'cancel'});
+            response = {
+                status: Status.OK,
+                message: 'Package cancel successfully.',
+                data: packages
+            }
+            console.log("response of booking ", response);
+            return res.status(Status.OK).json(response);
+            
+        } catch (error) {
+            response = {
+                status: Status.BAD_REQUEST,
+                message: 'Package not cancelled.'
+            }
+            return res.status(Status.BAD_REQUEST).json(response);
+        }
     }
 };
 

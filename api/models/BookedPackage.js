@@ -28,6 +28,14 @@ module.exports = {
       type: 'number',
       required: true,
     },
+    amount: {
+      type: 'number',
+      required: true,
+    },
+    status: {
+      type: 'string',
+      defaultsTo: 'booked'
+    },
     joinUs: {
       type: 'string',
       required: true,

@@ -51,5 +51,6 @@ module.exports.routes = {
   //For BookedPackageController
   'POST /api/v1/package/book': 'BookedPackageController.bookPackage',
   'GET /api/v1/getBookedPackages/:userId': 'BookedPackageController.getBookedPackages',
+  'PUT /api/v1/package/cancel': 'BookedPackageController.cancelPackage',
   
 };
